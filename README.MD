@@ -42,9 +42,9 @@ npm run prerender
 
 ## How it works / 工作原理
 
-It creates a server for SPA applications, then use Chromium browser to visit home page, find links, and scrape its rendered HTML code. It finds all internal links from element `a` and `link[rel="alternate"]`. If a link can't be found, add it to `addtionalUrl` in config.
+It creates a server for SPA applications, then use Chromium browser to visit home page, find links, and scrape its rendered HTML code. It finds all internal links from element `a` and `link[rel="alternate"]`. If a link can't be found, add it to `addtionalUrl` in config. It injects variable `window.__IS_GENERATED__ = true`, you can use this to detect if prerendered.
 
-它创建临时服务器运行 SPA 程序, 然后使用 Chromium 浏览器访问首页, 查找链接, 并抓取渲染后的 HTML 代码. 它通过`a`标签和`link[rel="alternate"]`查找站内链接. 如果某链接不能被找到, 把它添加到配置的`addtionalUrl`中.
+它创建临时服务器运行 SPA 程序, 然后使用 Chromium 浏览器访问首页, 查找链接, 并抓取渲染后的 HTML 代码. 它通过`a`标签和`link[rel="alternate"]`查找站内链接. 如果某链接不能被找到, 把它添加到配置的`addtionalUrl`中. 会注入变量`window.__IS_GENERATED__ = true`, 你可以使用此变量判断是否是预渲染后的 HTML.
 
 ## Config / 配置
 
@@ -66,3 +66,16 @@ const defaultConfig = {
   origin: string;
 }
 ```
+
+## Flick when first load / 首次加载闪烁
+
+For VueJs, when first load, it will remove prerendered html and create html. This makes page keep white for milliseconds. Solution(tested in Vue 3): first, use `createSSRApp` instead of `createApp`. Then add attribute `data-server-rendered="true"` to mount element, refer to the following code:
+
+```js
+// must be executed before mount. 必须在挂载app之前执行
+if (typeof window !== "undefined" && window.__IS_GENERATED__) {
+  document.querySelector("#app").setAttribute("data-server-rendered", "true");
+}
+```
+
+对于 VueJs, 首次加载时, 它将删除预渲染的内容并创建新的 HTML. 这使页面出现短时间的白屏, 造成闪烁. 解决方案(Vue3 测试有效): 首先用`createSSRApp` 替换 `createApp`, 然后向挂载元素添加属性`data-server-rendered="true"`. 参考上面代码.
