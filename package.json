@@ -1,0 +1,46 @@
+{
+  "name": "spa-prerender-cli",
+  "version": "0.0.1",
+  "description": "A CLI program to prerender single page app with Chromium, like VueJs, React, Angular.",
+  "keywords": [
+    "prerender",
+    "SPA seo"
+  ],
+  "repository": "https://github.com/phphe/spa-prerender-cli.git",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/src/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "bin": {
+    "prerender": "./dist/cli.cjs.js"
+  },
+  "scripts": {
+    "build-lib": "rogo & node fix-cli.js",
+    "watch-lib": "rogo -w"
+  },
+  "author": "phphe <phphe@outlook.com> (https://github.com/phphe)",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime": "^7.18.9",
+    "@types/finalhandler": "^1.1.1",
+    "@types/fs-extra": "^9.0.13",
+    "@types/serve-static": "^1.15.0",
+    "commander": "^9.4.0",
+    "finalhandler": "^1.2.0",
+    "fs-extra": "^10.1.0",
+    "helper-js": "^3.1.2",
+    "html-minifier": "^4.0.0",
+    "puppeteer": "^16.1.0",
+    "serve-static": "^1.15.0",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.5",
+    "rogo": "^3.1.4",
+    "typescript": "^4.7.4"
+  }
+}
