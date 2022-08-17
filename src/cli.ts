@@ -33,6 +33,10 @@ if (!configFile) {
       break;
     }
   }
+} else {
+  if (configFile && configFile[0] !== "/") {
+    configFile = path.join(process.cwd(), configFile);
+  }
 }
 if (!configFile) {
   throw "--config option not specified and default config not found.";
