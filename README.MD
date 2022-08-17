@@ -17,7 +17,7 @@ npm install spa-prerender-cli
 Create `prerender.config.ts`.
 
 ```ts
-import { defineConfig } from "./src/index";
+import { defineConfig } from "spa-prerender-cli";
 
 export default defineConfig({
   origin: "https://example.com",
