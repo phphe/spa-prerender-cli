@@ -72,10 +72,11 @@ const defaultConfig = {
 For VueJs, when first load, it will remove prerendered html and create html. This makes page keep white for milliseconds. Solution(tested in Vue 3): first, use `createSSRApp` instead of `createApp`. Then add attribute `data-server-rendered="true"` to mount element, refer to the following code:
 
 ```js
-// must be executed before mount. 必须在挂载app之前执行
+// must be executed before createSSRApp. 必须在createSSRApp之前执行
 if (typeof window !== "undefined" && window.__IS_GENERATED__) {
   document.querySelector("#app").setAttribute("data-server-rendered", "true");
 }
+var app = createSSRApp(App);
 ```
 
 对于 VueJs, 首次加载时, 它将删除预渲染的内容并创建新的 HTML. 这使页面出现短时间的白屏, 造成闪烁. 解决方案(Vue3 测试有效): 首先用`createSSRApp` 替换 `createApp`, 然后向挂载元素添加属性`data-server-rendered="true"`. 参考上面代码.
