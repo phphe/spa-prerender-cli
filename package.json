@@ -1,6 +1,6 @@
 {
   "name": "spa-prerender-cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A CLI program to prerender single page app with Chromium, like VueJs, React, Angular.",
   "keywords": [
     "prerender",

@@ -14,7 +14,7 @@ export default function genSitemapAndRobotsTXT(
     }
     if (!v.startsWith("http")) {
       // add origin
-      v = opt.origin + v ? "/" + v.replace(/^\//, "") : "";
+      v = opt.origin + (v ? "/" + v.replace(/^\//, "") : "");
     }
     return v;
   });
