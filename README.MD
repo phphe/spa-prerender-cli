@@ -65,18 +65,24 @@ const defaultConfig = {
   // site origin, e.g.: https://example.com
   origin: string;
 }
+// optional config. 可选配置
+{
+  // replace, e.g.: replace: {'hello world': 'world hello'}
+  // 文字替换, 是一个对象, 将会把键替换成值. 见上一行的例子
+  replace: Record<string, string>;
+}
 ```
 
 ## Flick when first load / 首次加载闪烁
 
-For VueJs, when first load, it will remove prerendered html and create html. This makes page keep white for milliseconds. Solution(tested in Vue 3): first, use `createSSRApp` instead of `createApp`. Then add attribute `data-server-rendered="true"` to mount element, refer to the following code:
+For VueJs, when first load, it will remove prerendered html and create html. This makes page keep white for milliseconds. Solution(tested in Vue 3): first, use `createSSRApp` instead of `createApp`. Then add attribute `data-server-rendered="true"` to mount element use config `replace`, refer to the following code:
 
 ```js
-// must be executed before createSSRApp. 必须在createSSRApp之前执行
-if (typeof window !== "undefined" && window.__IS_GENERATED__) {
-  document.querySelector("#app").setAttribute("data-server-rendered", "true");
+{
+  replace: {
+    '<div id="app">': '<div id="app" data-server-rendered="true">'
+  }
 }
-var app = createSSRApp(App);
 ```
 
-对于 VueJs, 首次加载时, 它将删除预渲染的内容并创建新的 HTML. 这使页面出现短时间的白屏, 造成闪烁. 解决方案(Vue3 测试有效): 首先用`createSSRApp` 替换 `createApp`, 然后向挂载元素添加属性`data-server-rendered="true"`. 参考上面代码.
+对于 VueJs, 首次加载时, 它将删除预渲染的内容并创建新的 HTML. 这使页面出现短时间的白屏, 造成闪烁. 解决方案(Vue3 测试有效): 首先用`createSSRApp` 替换 `createApp`, 然后向挂载元素添加属性`data-server-rendered="true"`. 可以使用配置`replace`做到, 参考上面代码.

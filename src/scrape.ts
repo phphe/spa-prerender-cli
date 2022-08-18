@@ -2,7 +2,6 @@ import { removeHost } from "./utils";
 import puppeteer from "puppeteer";
 // @ts-ignore
 import { minify } from "html-minifier";
-import internal from "stream";
 
 let browser: puppeteer.Browser | null;
 let scraping = 0;

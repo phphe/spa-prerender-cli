@@ -119,6 +119,11 @@ async function start() {
           },
         })
           .then((t) => {
+            if (config.replace) {
+              for (const fromStr of Object.keys(config.replace)) {
+                t.html = t.html.replaceAll(fromStr, config.replace[fromStr]);
+              }
+            }
             successfullUrls.push(urlWithoutHost);
             fs.outputFileSync(htmlPath, t.html);
             console.log(`Page scraped:`, urlWithoutHost);

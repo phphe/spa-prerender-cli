@@ -10,6 +10,7 @@ export const defaultConfig = {
 };
 type _configRequired = {
   origin: string; // site domain, e.g.: https://www.google.com
+  replace?: Record<string, string>;
 };
 
 export type Config = typeof defaultConfig & _configRequired;
