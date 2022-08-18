@@ -7,7 +7,6 @@ export const defaultConfig = {
   pageTimeout: 1000 * 20, // 20s
   addtionalUrl: [] as string[],
   viewport: { width: 1773, height: 887 },
-  minify: true,
 };
 type _configRequired = {
   origin: string; // site domain, e.g.: https://www.google.com

@@ -1,8 +1,6 @@
 import { removeHost } from "./utils";
 import puppeteer from "puppeteer";
-// @ts-ignore
-import { minify } from "html-minifier";
-import { config } from "process";
+// import { minify } from "html-minifier"; // deprecated. minify is unnecessary
 
 let browser: puppeteer.Browser | null;
 let scraping = 0;
@@ -98,9 +96,7 @@ export default function scrapeOnePage(
             )})</script>`
           );
         }
-        if (opt.minify) {
-          html = `<!DOCTYPE html>` + minify(html);
-        }
+        html = `<!DOCTYPE html>` + html;
         //
         urls = urls.filter((v) => v);
         if (!opt.withHash) {

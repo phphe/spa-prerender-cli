@@ -73,16 +73,10 @@ const defaultConfig = {
 }
 ```
 
-## Flick when first load / 首次加载闪烁
+## Examples / 例子
 
-For VueJs, when first load, it will remove prerendered html and create html. This makes page keep white for milliseconds. Solution(tested in Vue 3): first, use `createSSRApp` instead of `createApp`. Then add attribute `data-server-rendered="true"` to mount element use config `replace`, refer to the following code:
+Feel free to add examples here if your project works well with spa-prerender-cli.
 
-```js
-{
-  replace: {
-    '<div id="app">': '<div id="app" data-server-rendered="true">'
-  }
-}
-```
+如果 spa-prerender-cli 在你的项目工作良好, 欢迎添加到此处.
 
-对于 VueJs, 首次加载时, 它将删除预渲染的内容并创建新的 HTML. 这使页面出现短时间的白屏, 造成闪烁. 解决方案(Vue3 测试有效): 首先用`createSSRApp` 替换 `createApp`, 然后向挂载元素添加属性`data-server-rendered="true"`. 可以使用配置`replace`做到, 参考上面代码.
+- Work with Vue3, [docs-site of he-tree](https://github.com/phphe/he-tree/tree/dev/packages/docs-site)
