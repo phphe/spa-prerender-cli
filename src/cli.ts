@@ -114,6 +114,7 @@ async function start() {
           puppeteerLaunchOptions: { defaultViewport: config.viewport },
           retry: config.retry,
           timeout: config.pageTimeout,
+          minify: config.minify,
           injectVariables: {
             __IS_GENERATED__: true,
           },

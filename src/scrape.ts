@@ -2,6 +2,7 @@ import { removeHost } from "./utils";
 import puppeteer from "puppeteer";
 // @ts-ignore
 import { minify } from "html-minifier";
+import { config } from "process";
 
 let browser: puppeteer.Browser | null;
 let scraping = 0;
@@ -16,6 +17,7 @@ export default function scrapeOnePage(
     retry?: number;
     timeout?: number;
     injectVariables?: object;
+    minify?: boolean;
   } = {},
   count = 0
 ) {
@@ -96,7 +98,9 @@ export default function scrapeOnePage(
             )})</script>`
           );
         }
-        html = minify(`<!DOCTYPE html>${html}`);
+        if (opt.minify) {
+          html = `<!DOCTYPE html>` + minify(html);
+        }
         //
         urls = urls.filter((v) => v);
         if (!opt.withHash) {
