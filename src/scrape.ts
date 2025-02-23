@@ -1,8 +1,8 @@
 import { removeHost } from "./utils";
-import puppeteer from "puppeteer";
+import puppeteer, { Browser,LaunchOptions, WaitForOptions } from "puppeteer";
 // import { minify } from "html-minifier"; // deprecated. minify is unnecessary
 
-let browser: puppeteer.Browser | null;
+let browser: Browser | null;
 let scraping = 0;
 
 export default function scrapeOnePage(
@@ -10,8 +10,8 @@ export default function scrapeOnePage(
   opt: {
     withHash?: boolean;
     withExternal?: boolean;
-    puppeteerLaunchOptions?: puppeteer.PuppeteerLaunchOptions;
-    puppeteerWaitForOptions?: puppeteer.WaitForOptions;
+    puppeteerLaunchOptions?: LaunchOptions;
+    puppeteerWaitForOptions?: WaitForOptions;
     retry?: number;
     timeout?: number;
     injectVariables?: object;
